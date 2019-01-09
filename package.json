@@ -32,5 +32,8 @@
     "inquirer": "^6.2.1",
     "minimist": "^1.2.0",
     "touch": "^3.1.0"
+  },
+  "bin": {
+    "jba": "./index.js"
   }
 }
