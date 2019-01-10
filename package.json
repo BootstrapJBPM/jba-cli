@@ -26,12 +26,20 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
+    "cli-spinner": "^0.2.8",
     "clui": "^0.3.6",
+    "command-line-usage": "^5.0.5",
     "configstore": "^4.0.0",
+    "decompress-zip": "^0.3.1",
+    "extract-zip": "^1.6.7",
     "figlet": "^1.2.1",
     "inquirer": "^6.2.1",
     "minimist": "^1.2.0",
-    "touch": "^3.1.0"
+    "request": "^2.88.0",
+    "touch": "^3.1.0",
+    "unzip": "^0.1.11",
+    "unzipper": "^0.9.7",
+    "zlib": "^1.0.5"
   },
   "bin": {
     "jba": "./index.js"
