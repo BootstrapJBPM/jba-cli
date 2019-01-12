@@ -5,7 +5,7 @@ Package used to generate jBPM Business Applications.
 It uses start.jbpm.org to generate the business app zip and store it
 in the folder where the "jba" command is run.
 
-How to run
+How to install
 ==============================
 1. From npm: 
 ```
@@ -17,7 +17,12 @@ git clone git@github.com:BootstrapJBPM/jba-cli.git
 cd jba-cli
 npm install -g
 ```
-
+How to update to latest version
+==============================
+This will update to latest version published on npmjs.com
+```
+npm update -g jba-cli
+```
 
 How to run
 ==============================
