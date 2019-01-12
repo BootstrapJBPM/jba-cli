@@ -1,6 +1,6 @@
 {
   "name": "jba-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "jBPM Business Applications CLI",
   "main": "index.js",
   "scripts": {
