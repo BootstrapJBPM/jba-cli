@@ -11,6 +11,7 @@ const usage = require('./lib/usage');
 const appinstall = require('./lib/appinstall');
 
 const allCommands = ['gen'];
+var site = 'http://start.jbpm.org/gen';
 
 clear();
 console.log(
@@ -21,16 +22,33 @@ console.log(
 
 const genAndInstall = async () => {
     const appdetails = await infoprompt.askAppCredentials();
-    appinstall.getAndGenerate('http://localhost:8090/gen', appdetails);
+
+    var haveKJar = false;
+    var haveDKJar = false;
+    if (appdetails.options.some(e => e === 'kjar')) {
+        haveKJar = true;
+    }
+    if (appdetails.options.some(e => e === 'dkjar')) {
+        haveDKJar = true;
+    }
+
+    if(haveKJar && haveDKJar) {
+        appdetails.options.shift();
+    }
+
+    appinstall.getAndGenerate(site, appdetails);
 }
 
 const args = minimist(process.argv.slice(2))
 
-
 if(args._.length != 1) {
     console.log(usage.showUsage());
 } else {
-    const cmd = args._[0]
+    const cmd = args._[0];
+    if(args.site) {
+        console.log('** Setting gen site to: ' + args.site);
+        site = args.site;
+    }
     if (allCommands.indexOf(cmd) < 0) {
         console.log(usage.showUsage());
     } else {
