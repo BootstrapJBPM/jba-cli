@@ -1,8 +1,9 @@
 jBPM Business Applications CLI
 ==============================
 
-Package you can use to generate jBPM Business Applications. 
+Package used to generate jBPM Business Applications. 
 
 
 How to run
 ==============================
+![JBA Usage](img/jbareadme.png.png?raw=true)'
