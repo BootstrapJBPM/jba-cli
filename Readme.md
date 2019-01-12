@@ -31,4 +31,9 @@ How to run
 
 Sample execution
 ==============================
+
+```
+jba gen
+```
+
 ![JBA Usage](img/jbausage.png?raw=true)
