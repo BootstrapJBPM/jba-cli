@@ -9,7 +9,7 @@ How to run
 ==============================
 1. From npm: 
 ```
-npm install jba-cli
+npm install jba-cli -g
 ```
 2. From GitHub
 ```
