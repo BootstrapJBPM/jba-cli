@@ -11,7 +11,7 @@ const usage = require('./lib/usage');
 const appinstall = require('./lib/appinstall');
 
 const allCommands = ['gen'];
-var site = 'http://start.jbpm.org/gen';
+var site = 'https://start.jbpm.org/gen';
 
 clear();
 console.log(
