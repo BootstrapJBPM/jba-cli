@@ -37,3 +37,12 @@ jba gen
 ```
 
 ![JBA Usage](img/jbausage.png?raw=true)
+
+Sample execution with unzipping
+==============================
+
+```
+jba gen --unzip
+```
+
+![JBA Usage](img/jbausageunzip.png?raw=true)
