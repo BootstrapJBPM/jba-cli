@@ -31,6 +31,7 @@ How to run
 
 Sample execution
 ==============================
+Default execution using the gen command. This will prompt user for inputs.
 
 ```
 jba gen
@@ -38,8 +39,19 @@ jba gen
 
 ![JBA Usage](img/jbausage.png?raw=true)
 
+Sample execution with quick option
+==============================
+Quick option used default values, no user input will be asked.
+
+```
+jba gen --quick
+```
+
+![JBA Usage](img/jbausagequick.png?raw=true)
+
 Sample execution with unzipping
 ==============================
+Using the unzip option will unzip the business app into the current directory after generating it. The generated zip file will not be removed
 
 ```
 jba gen --unzip

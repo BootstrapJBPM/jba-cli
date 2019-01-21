@@ -9,8 +9,18 @@ const usage = require('./lib/usage');
 const appinstall = require('./lib/appinstall');
 
 const allCommands = ['gen'];
+const defaultAppDetails = { 
+    capabilities: 'bpm',
+    packagename: 'com.company',
+    name: 'business-application',
+    version: '',
+    options: [ 'kjar', 'model', 'service' ] 
+}
+
 var site = 'https://start.jbpm.org/gen';
 var dounzip = false;
+var quickinstall = false;
+
 
 clear();
 console.log(
@@ -22,22 +32,27 @@ console.log(
 );
 
 const genAndInstall = async () => {
-    const appdetails = await infoprompt.askAppCredentials();
+    var appDetails = {};
+    if(quickinstall) {
+        appDetails = defaultAppDetails;
+    } else {
+        appDetails = await infoprompt.askAppCredentials();
+    }
 
     var haveKJar = false;
     var haveDKJar = false;
-    if (appdetails.options.some(e => e === 'kjar')) {
+    if (appDetails.options.some(e => e === 'kjar')) {
         haveKJar = true;
     }
-    if (appdetails.options.some(e => e === 'dkjar')) {
+    if (appDetails.options.some(e => e === 'dkjar')) {
         haveDKJar = true;
     }
 
     if (haveKJar && haveDKJar) {
-        appdetails.options.shift();
+        appDetails.options.shift();
     }
 
-    appinstall.getAndGenerate(site, dounzip, appdetails);
+    appinstall.getAndGenerate(site, dounzip, appDetails);
 }
 
 const args = minimist(process.argv.slice(2))
@@ -52,6 +67,9 @@ if (args._.length != 1) {
     }
     if(args.unzip) {
         dounzip = true;
+    }
+    if(args.quick) {
+        quickinstall = true;
     }
     if (allCommands.indexOf(cmd) < 0) {
         console.log(usage.showUsage());
