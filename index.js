@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/*jshint esversion: 6 */
+
 const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
@@ -9,18 +11,17 @@ const usage = require('./lib/usage');
 const appinstall = require('./lib/appinstall');
 
 const allCommands = ['gen'];
-const defaultAppDetails = { 
+const defaultAppDetails = {
     capabilities: 'bpm',
     packagename: 'com.company',
     name: 'business-application',
     version: '',
-    options: [ 'kjar', 'model', 'service' ] 
-}
+    options: ['kjar', 'model', 'service']
+};
 
 var site = 'https://start.jbpm.org/gen';
 var dounzip = false;
 var quickinstall = false;
-
 
 clear();
 console.log(
@@ -31,10 +32,27 @@ console.log(
     )
 );
 
-const genAndInstall = async () => {
+const genAndInstall = async (args) => {
     var appDetails = {};
-    if(quickinstall) {
+    if (quickinstall) {
         appDetails = defaultAppDetails;
+        // if quickstart check of individual params
+        // and overwrite defaults
+        if (args.capabilities) {
+            appDetails.capabilities = args.capabilities;
+        }
+        if (args.packagename) {
+            appDetails.packagename = args.packagename;
+        }
+        if (args.name) {
+            appDetails.name = args.name;
+        }
+        if (args.version) {
+            appDetails.version = args.version;
+        }
+        if (args.options) {
+            appDetails.options = args.options.split(',');
+        }
     } else {
         appDetails = await infoprompt.askAppCredentials();
     }
@@ -62,19 +80,18 @@ if (args._.length != 1) {
 } else {
     const cmd = args._[0];
     if (args.site) {
-        console.log('** Setting gen site to: ' + args.site);
         site = args.site;
     }
-    if(args.unzip) {
+    if (args.unzip) {
         dounzip = true;
     }
-    if(args.quick) {
+    if (args.quick) {
         quickinstall = true;
     }
     if (allCommands.indexOf(cmd) < 0) {
         console.log(usage.showUsage());
     } else {
-        genAndInstall();
+        genAndInstall(args);
     }
 
 }
