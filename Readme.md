@@ -3,7 +3,8 @@ jBPM Business Applications CLI
 
 Package used to generate jBPM Business Applications. 
 It uses start.jbpm.org to generate the business app zip and store it
-in the folder where the "jba" command is run.
+in the folder where the "jba" command is run. It is also possible to 
+unzip the generated business app into the current working directory.
 
 How to install
 ==============================
