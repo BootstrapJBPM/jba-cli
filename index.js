@@ -43,7 +43,7 @@ if (args._.length != 1) {
     if (allCommands.indexOf(cmd) < 0) {
         console.log(usage.showUsage());
     } else {
-        getAndGenerate(args, quickinstall, site, dounzip, "");
+        getAndGenerate(args, quickinstall, site, dounzip);
     }
 }
 
