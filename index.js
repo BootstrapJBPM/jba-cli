@@ -2,31 +2,30 @@
 
 /*jshint esversion: 6 */
 
-const chalk = require('chalk');
-const clear = require('clear');
-const figlet = require('figlet');
-const minimist = require('minimist');
-const usage = require('./lib/usage');
-const appinstall = require('./lib/appinstall');
-const infoprompt = require('./lib/infoprompt');
+const chalk = require("chalk");
+const clear = require("clear");
+const figlet = require("figlet");
+const minimist = require("minimist");
+const usage = require("./lib/usage");
+const appinstall = require("./lib/appinstall");
+const infoprompt = require("./lib/infoprompt");
 
+const allCommands = ["gen"];
 
-const allCommands = ['gen'];
-
-var site = 'https://start.jbpm.org/gen';
+var site = "https://start.jbpm.org/gen";
 var dounzip = false;
 var quickinstall = false;
 
 clear();
 console.log(
     chalk.yellow(
-        figlet.textSync('JBA CLI', {
-            horizontalLayout: 'full'
+        figlet.textSync("JBA CLI", {
+            horizontalLayout: "full"
         })
     )
 );
 
-const args = minimist(process.argv.slice(2))
+const args = minimist(process.argv.slice(2));
 
 if (args._.length != 1) {
     console.log(usage.showUsage());
@@ -44,18 +43,17 @@ if (args._.length != 1) {
     if (allCommands.indexOf(cmd) < 0) {
         console.log(usage.showUsage());
     } else {
-        getAndGenerate(args, quickinstall, site, dounzip);
+        getAndGenerate(args, quickinstall, site, dounzip, "");
     }
-
 }
 
-async function getAndGenerate(args, quickinstall, site, dounzip) {
+async function getAndGenerate(args, quickinstall, site, dounzip, path) {
     const defaultAppDetails = {
-        capabilities: 'bpm',
-        packagename: 'com.company',
-        name: 'business-application',
-        version: '',
-        options: ['kjar', 'model', 'service']
+        capabilities: "bpm",
+        packagename: "com.company",
+        name: "business-application",
+        version: "",
+        options: ["kjar", "model", "service"]
     };
 
     var appDetails = {};
@@ -76,7 +74,7 @@ async function getAndGenerate(args, quickinstall, site, dounzip) {
             appDetails.version = args.version;
         }
         if (args.options) {
-            appDetails.options = args.options.split(',');
+            appDetails.options = args.options.split(",");
         }
     } else {
         appDetails = await infoprompt.askAppCredentials();
@@ -84,10 +82,10 @@ async function getAndGenerate(args, quickinstall, site, dounzip) {
 
     var haveKJar = false;
     var haveDKJar = false;
-    if (appDetails.options.some(e => e === 'kjar')) {
+    if (appDetails.options.some(e => e === "kjar")) {
         haveKJar = true;
     }
-    if (appDetails.options.some(e => e === 'dkjar')) {
+    if (appDetails.options.some(e => e === "dkjar")) {
         haveDKJar = true;
     }
 
@@ -95,7 +93,7 @@ async function getAndGenerate(args, quickinstall, site, dounzip) {
         appDetails.options.shift();
     }
 
-    appinstall.getAndGenerate(site, dounzip, appDetails);
+    appinstall.getAndGenerate(site, dounzip, appDetails, path);
 }
 
 module.exports.getAndGenerate = getAndGenerate;
