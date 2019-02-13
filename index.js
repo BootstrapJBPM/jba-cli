@@ -9,6 +9,7 @@ const minimist = require("minimist");
 const usage = require("./lib/usage");
 const appinstall = require("./lib/appinstall");
 const infoprompt = require("./lib/infoprompt");
+var pjson = require('./package.json');
 
 const allCommands = ["gen"];
 
@@ -24,6 +25,7 @@ console.log(
         })
     )
 );
+console.log(chalk.red('Version ' + pjson.version));
 
 const args = minimist(process.argv.slice(2));
 
