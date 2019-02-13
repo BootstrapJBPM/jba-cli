@@ -95,7 +95,8 @@ async function getAndGenerate(args, quickinstall, site, dounzip, path, dothrow) 
         appDetails.options.shift();
     }
 
-    return appinstall.getAndGenerate(site, dounzip, appDetails, path, dothrow);
+    return await appinstall.getAndGenerate(site, dounzip, appDetails, path, dothrow);
 }
 
 module.exports.getAndGenerate = getAndGenerate;
+module.exports.urlExists = appinstall.urlExists;
