@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-/*jshint esversion: 6 */
+/*jshint esversion: 8 */
 
 const chalk = require("chalk");
 const clear = require("clear");
@@ -49,7 +49,7 @@ if (args._.length != 1) {
     }
 }
 
-async function getAndGenerate(args, quickinstall, site, dounzip, path) {
+async function getAndGenerate(args, quickinstall, site, dounzip, path, dothrow) {
     const defaultAppDetails = {
         capabilities: "bpm",
         packagename: "com.company",
@@ -95,7 +95,7 @@ async function getAndGenerate(args, quickinstall, site, dounzip, path) {
         appDetails.options.shift();
     }
 
-    appinstall.getAndGenerate(site, dounzip, appDetails, path);
+    return appinstall.getAndGenerate(site, dounzip, appDetails, path, dothrow);
 }
 
 module.exports.getAndGenerate = getAndGenerate;
